@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- كود توثيق محرك بحث جوجل الخاص بك مدمج هنا في السطر 6 بنجاح -->
+    <meta name="google-site-verification" content="932t0GvCvBPfBrbtpdTyheBT3wI5AKF22n0-gCBFTZM" />
+    <title>NEXUS ENGINE // PERFORMANCE COMMAND CENTER</title>
+    <style>
+        :root {
+            --bg-black: #06030B;
+            --bg-dark: #0D091A;
+            --bg-card: #140F26;
+            --neon-purple: #8B5CF6;
+            --neon-hover: #7C3AED;
+            --neon-red: #EF4444;
+            --neon-blue: #3B82F6;
+            --neon-green: #10B981;
+        }
+        body {
+            background-color: var(--bg-black);
+            color: #FFFFFF;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .header-panel {
+            background-color: var(--bg-dark);
+            width: 90%;
+            max-width: 1010px;
+            border-radius: 16px;
+            margin-top: 30px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+        .header-panel h1 {
+            font-family: 'Impact', sans-serif;
+            font-size: 2.2rem;
+            margin: 0;
+            color: #C084FC;
+            letter-spacing: 1px;
+        }
+        .header-panel p {
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: #6B7280;
+            margin: 5px 0 0 0;
+        }
+        .lang-toggle {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            background-color: #1F1A3A;
+            border: none;
+            color: #FFFFFF;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .lang-toggle:hover { background-color: var(--neon-hover); }
+        
+        .grid-canvas {
+            background-color: var(--bg-dark);
+            width: 90%;
+            max-width: 1010px;
+            border-radius: 20px;
+            margin-top: 20px;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(440px, 1fr));
+            gap: 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 14px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 140px;
+        }
+        .card h2 { font-size: 1.15rem; margin: 0 0 5px 0; font-weight: bold; }
+        .card p { font-size: 0.85rem; color: #9CA3AF; margin: 0 0 15px 0; }
+        .card .btn {
+            width: 160px;
+            height: 38px;
+            border-radius: 8px;
+            border: none;
+            color: #FFFFFF;
+            font-weight: bold;
+            font-size: 0.85rem;
+            cursor: pointer;
+            text-align: center;
+            line-height: 38px;
+            text-decoration: none;
+        }
+        
+        .card-kernel h2 { color: var(--neon-purple); }
+        .card-kernel .btn { background-color: var(--neon-purple); }
+        .card-kernel .btn:hover { background-color: var(--neon-hover); }
+        
+        .card-security h2 { color: var(--neon-red); }
+        .card-security .btn { background-color: #DC2626; }
+        .card-security .btn:hover { background-color: #B91C1C; }
+        
+        .card-ram h2 { color: var(--neon-blue); }
+        .card-ram .btn { background-color: #2563EB; }
+        .card-ram .btn:hover { background-color: #1D4ED8; }
+        
+        .card-ping h2 { color: var(--neon-green); }
+        .card-ping .btn { background-color: #059669; }
+        .card-ping .btn:hover { background-color: #047857; }
+
+        .download-zone {
+            width: 90%;
+            max-width: 1010px;
+            background-color: var(--bg-card);
+            border-radius: 14px;
+            margin-top: 25px;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .dl-btn {
+            display: block;
+            width: 100%;
+            height: 45px;
+            border-radius: 10px;
+            text-align: center;
+            line-height: 45px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.95rem;
+            color: #FFFFFF;
+            box-sizing: border-box;
+        }
+        .dl-main { background-color: var(--neon-purple); }
+        .dl-main:hover { background-color: var(--neon-hover); }
+        .dl-sub { background-color: #1F1A3A; border: 1px solid #31295C; }
+        .dl-sub:hover { background-color: #31295C; }
+
+        .guide-panel {
+            background-color: var(--bg-card);
+            width: 90%;
+            max-width: 1010px;
+            border-radius: 14px;
+            margin: 20px 0 40px 0;
+            padding: 25px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+        .guide-title { font-size: 0.95rem; font-weight: bold; color: #A78BFA; margin-bottom: 10px; }
+        .guide-step { font-size: 0.85rem; color: #9CA3AF; margin: 5px 0; }
+    </style>
+</head>
+<body>
+
+    <div class="header-panel">
+        <button class="lang-toggle" id="langBtn" onclick="toggleLanguage()">العربية</button>
+        <h1 id="mainTitle">NEXUS ENGINE v4.0 // ULTIMATE GAMING PLAYBOOK</h1>
+        <p id="mainSubtitle">DYNAMIC PERFORMANCE CONTROL & SECURITY INTERFACE</p>
+    </div>
+
+    <div class="grid-canvas">
+        <div class="card card-kernel">
+            <h2 id="t1">KERNEL TUNER</h2>
+            <p id="d1">Unlock CPU cores & GPU maximum priority.</p>
+            <span class="btn" id="b1">INJECT TWEAKS</span>
+        </div>
+        <div class="card card-security">
+            <h2 id="t2">SECURITY TAKEOVER</h2>
+            <p id="d2">Takeover Windows Security & stop Defender check.</p>
+            <span class="btn" id="b2">TAKEOVER NOW</span>
+        </div>
+        <div class="card card-ram">
+            <h2 id="t3">RAM PURIFIER</h2>
+            <p id="d3">Deep flush RAM stores & Windows temporary cache.</p>
+            <span class="btn" id="b3">FLUSH STORES</span>
+        </div>
+        <div class="card card-ping">
+            <h2 id="t4">PING STABILIZER</h2>
+            <p id="d4">Modify TCP/IP packets for ultra low ping latency.</p>
+            <span class="btn" id="b4">TUNER PROTOCOL</span>
+        </div>
+    </div>
+
+    <div class="download-zone">
+        <div style="background-color: rgba(239, 68, 68, 0.1); border-left: 4px solid var(--neon-red); padding: 15px; border-radius: 6px; margin-bottom: 10px;">
+            <span style="color: var(--neon-red); font-weight: bold; font-size: 0.9rem;" id="warnTitle">⚠️ CRITICAL SYSTEM WARNING</span><br>
+            <p style="margin: 5px 0 0 0; font-size: 0.82rem; color: #9CA3AF; line-height: 1.4;" id="warnDesc">This engine is modified exclusively for maximum gaming performance. It disables core security layers to liberate absolute system power for heavy games like GTA V. DO NOT use this system for banking, sensitive web browsing, or work.</p>
+        </div>
+        <a href="https://mediafire.com" class="dl-btn dl-main" id="btnMainDL" target="_blank">DOWNLOAD NEXUS ENGINE SOFTWARE (.ZIP)</a>
+        <a href="https://microsoft.com" class="dl-btn dl-sub" id="btnSubDL" target="_blank">GET OFFICIAL SECURE WINDOWS 10 ISO</a>
+    </div>
+
+    <div class="guide-panel">
+        <div class="guide-title" id="gTitle">HOW TO FIX QUARANTINE / FALSE POSITIVE DETECTION:</div>
+        <div class="guide-step" id="s1">-> Step 1: Click the button inside software to jump directly to Windows Security Settings.</div>
+        <div class="guide-step" id="s2">-> Step 2: Under 'Exclusions' section, click on 'Add or remove exclusions' link.</div>
+        <div class="guide-step" id="s3">-> Step 3: Click the [+ Add an exclusion] button and select 'Folder' option.</div>
+        <div class="guide-step" id="s4">-> Step 4: Choose this application's folder to permanently stop Defender from deleting it.</div>
+    </div>
+
+    <script>
+        let currentLang = "EN";
+        const data = {
+            "EN": {
+                "btn": "العربية", "direction": "ltr", "align": "left",
+                "title": "NEXUS ENGINE v4.0 // ULTIMATE GAMING PLAYBOOK",
+                "subtitle": "DYNAMIC PERFORMANCE CONTROL & SECURITY INTERFACE",
+                "t1": "KERNEL TUNER", "d1": "Unlock CPU cores & GPU maximum priority.", "b1": "INJECT TWEAKS",
+                "t2": "SECURITY TAKEOVER", "d2": "Takeover Windows Security & stop Defender check.", "b2": "TAKEOVER NOW",
+                "t3": "RAM PURIFIER", "d3": "Deep flush RAM stores & Windows temporary cache.", "b3": "FLUSH STORES",
+                "t4": "PING STABILIZER", "d4": "Modify TCP/IP packets for ultra low ping latency.", "b4": "TUNER PROTOCOL",
+                "warnTitle": "⚠️ CRITICAL SYSTEM WARNING", "warnDesc": "This engine is modified exclusively for maximum gaming performance. It disables core security layers to liberate absolute system power for heavy games like GTA V. DO NOT use this system for banking, sensitive web browsing, or work.",
+                "btnMain": "DOWNLOAD NEXUS ENGINE SOFTWARE (.ZIP)", "btnSub": "GET OFFICIAL SECURE WINDOWS 10 ISO",
+                "gTitle": "HOW TO FIX QUARANTINE / FALSE POSITIVE DETECTION:",
+                "s1": "-> Step 1: Click the button inside software to jump directly to Windows Security Settings.",
+                "s2": "-> Step 2: Under 'Exclusions' section, click on 'Add or remove exclusions' link.",
+                "s3": "-> Step 3: Click the [+ Add an exclusion] button and select 'Folder' option.",
+                "s4": "-> Step 4: Choose this application's folder to permanently stop Defender from deleting it."
+            },
+            "AR": {
+                "btn": "English", "direction": "rtl", "align": "right",
+                "title": "نكسس إنجن v4.0 // واجهة المستقبل للألعاب",
+                "subtitle": "لوحة التحكم الديناميكية بالأداء الخارق وإدارة الحماية",
+                "t1": "تعديل النواة البرمجية", "d1": "إلغاء خمول المعالج وتوجيه الطاقة القصوى لكرت الشاشة.", "b1": "تفعيل التعديلات",
+                "t2": "السيطرة على الحماية", "d2": "تسجيل البرنامج كمدير أمان رسمي وإيقاف ديفندر تلقائياً.", "b2": "تفعيل السيطرة",
+                "t3": "تنظيف الذاكرة العميقة", "d3": "تفريغ ذاكرة الرام ومسح مخازن الكاش المؤقتة لتسريع اللعب.", "b3": "تفريغ المخازن",
+                "t4": "مثبت البينج والشبكة", "d4": "تعديل بروتوكول TCP/IP لمنع الـ Lag وتقليل البينج أونلاين.", "b4": "تحسين حزم الشبكة",
+                "warnTitle": "⚠️ تنبيه نظام حرج للغاية", "warnDesc": "هذا البرنامج معدل ومخصص حصرياً لتشغيل الألعاب بأعلى أداء، حيث يقوم بإيقاف خدمات الحماية لتوفير كامل طاقة الجهاز للألعاب الثقيلة مثل GTA V. لا تستخدم هذا النظام للتصفح الحساس، الحسابات البنكية، أو العمل الحقيقي.",
+                "btnMain": "تحميل برنامج نكسس إنجن المطور (.ZIP)", "btnSub": "الانتقال لتحميل نسخة ويندوز 10 الرسمية الآمنة",
+                "gTitle": "دليل حل مشكلة عزل وحظر البرنامج من قبل الحماية:",
+                "s1": "<- الخطوة 1: اضغط على الزر الداكن أسفل البرنامج للانتقال الفوري لإعدادات الأمان.",
+                "s2": "<- الخطوة 2: تحت قسم 'الاستثناءات'، اضغط على خيار 'إضافة أو إزالة استثناءات'.",
+                "s3": "<- الخطوة 3: اضغط على زر [+ إضافة استثناء] الكبير واختر خيار 'مجلد'.",
+                "s4": "<- الخطوة 4: اختر مجلد هذا البرنامج لمنع ديفندر من حذفه أو عزل ملفاته نهائياً."
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = (currentLang === "EN") ? "AR" : "EN";
+            const s = data[currentLang];
+            
+            document.body.style.direction = s.direction;
+            document.getElementById("langBtn").innerText = s.btn;
+            document.getElementById("mainTitle").innerText = s.title;
+            document.getElementById("mainSubtitle").innerText = s.subtitle;
+            
+            for(let i=1; i<=4; i++) {
+                document.getElementById(`t${i}`).innerText = s[`t${i}`];
+                document.getElementById(`d${i}`).innerText = s[`d${i}`];
+                document.getElementById(`b${i}`).innerText = s[`b${i}`];
+                document.getElementById(`t${i}`).parentElement.style.textAlign = s.align;
+            }
+            
+            document.getElementById("warnTitle").innerText = s.warnTitle;
+            document.getElementById("warnDesc").innerText = s.warnDesc;
+            document.getElementById("btnMainDL").innerText = s.btnMain;
+            document.getElementById("btnSubDL").innerText = s.btnSub;
+            document.getElementById("gTitle").innerText = s.gTitle;
+            document.getElementById("gTitle").style.textAlign = s.align;
+            
+            for(let j=1; j<=4; j++) {
+                document.getElementById(`s${j}`).innerText = s[`s${j}`];
+                document.getElementById(`s${j}`).style.textAlign = s.align;
+            }
+        }
+    </script>
+</body>
+</html>
